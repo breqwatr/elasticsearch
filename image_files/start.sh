@@ -37,7 +37,9 @@ then
     cd /usr/share/elasticsearch/bin/
     ./elasticsearch-certutil cert -out /etc/elasticsearch/elastic-certificates.p12  -pass ""
     chmod 664 /etc/elasticsearch/elastic-certificates.p12
+    """ sed fails on elasticsearch.yml with following error:
     #sed: cannot rename /etc/elasticsearch/sedXdVDys: Device or resource busy
+    """
     cp /etc/elasticsearch/elasticsearch.yml /etc/elasticsearch/elasticsearch_yml_tmp
     sed -i '/^xpack/s/^\(.*\)$/#\1/' /etc/elasticsearch/elasticsearch_yml_tmp
     cp -f /etc/elasticsearch/elasticsearch_yml_tmp /etc/elasticsearch/elasticsearch.yml
